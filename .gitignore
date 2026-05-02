@@ -1,0 +1,55 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# VS Code / editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated datasets / outputs
+data/datasets/
+outputs/
+logs/
+*.log
+
+# Model checkpoints / trained models
+*.pt
+*.pth
+*.ckpt
+model/checkpoints/
+models/
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
