@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FYP Route Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Route Planner</h1>
+        <p>Lightweight delivery scanning system for small businesses</p>
+    </header>
+
+    <main>
+        <section id="login-section" class="card">
+            <h2>Employee Access</h2>
+            <p>Enter your employee or till number to start scanning deliveries.</p>
+
+            <div class="form-row">
+                <input id="employee-number" type="text" placeholder="Employee number / till number">
+                <button id="login-button">Start Session</button>
+            </div>
+        </section>
+
+        <section id="dashboard-section" class="hidden">
+            <section class="card">
+                <div class="dashboard-header">
+                    <div>
+                        <h2>Delivery Scanning</h2>
+                        <p id="employee-display">Active employee:</p>
+                    </div>
+                    <button id="logout-button" class="secondary-button">End Session</button>
+                </div>
+
+                <div class="form-row">
+                    <input id="barcode-input" type="text" placeholder="Scan or enter barcode e.g. DEL-100001">
+                    <button id="scan-button">Add Delivery</button>
+                </div>
+
+                <p id="status-message"></p>
+            </section>
+
+            <section class="card">
+                <h2>Selected Route Stops</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Barcode</th>
+                            <th>Item</th>
+                            <th>Customer</th>
+                            <th>Town</th>
+                            <th>Postcode</th>
+                        </tr>
+                    </thead>
+                    <tbody id="selected-route-body">
+                        <tr>
+                            <td colspan="5">No deliveries scanned yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button id="optimise-button" class="wide-button">Optimise Route</button>
+            </section>
+
+            <section class="card">
+                <h2>Optimised Route Preview</h2>
+                <ol id="route-preview">
+                    <li>No route generated yet.</li>
+                </ol>
+            </section>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
