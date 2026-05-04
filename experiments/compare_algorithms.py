@@ -52,14 +52,20 @@ def evaluate_route(
     }
 
 
-def compare_algorithms(number_of_locations: int = 10, seed: int = 42) -> list[dict]:
+def compare_algorithms(number_of_locations: int = 25, seed: int = 42) -> list[dict]:
     """
     Generate a dataset and compare route optimisation approaches.
     """
 
     random.seed(seed)
 
-    dataset = generate_dataset(n=number_of_locations, seed=seed, save=False)
+    dataset = generate_dataset(
+    n=number_of_locations,
+    seed=seed,
+    save=False,
+    max_locations=50,
+    )   
+
     distance_matrix = dataset["distance_matrix"]
 
     random_route = create_random_route(number_of_locations, start_index=0)
@@ -107,7 +113,7 @@ def print_results(results: list[dict]) -> None:
 
 if __name__ == "__main__":
     comparison_results = compare_algorithms(
-        number_of_locations=10,
+        number_of_locations=50,
         seed=42,
     )
 

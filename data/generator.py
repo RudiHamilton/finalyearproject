@@ -20,6 +20,8 @@ DEFAULT_BOUNDS = {
     "lng_max": -5.4,
 }
 
+DEFAULT_MAX_LOCATIONS = 50  # API and model constraints limit us to 25 locations per dataset
+
 DATASETS_DIR = os.path.join(os.path.dirname(__file__), "datasets")
 
 def generate_coordinates(n: int, bounds: dict, seed: int = None) -> list:
@@ -48,10 +50,11 @@ def generate_coordinates(n: int, bounds: dict, seed: int = None) -> list:
 
 def generate_dataset(
     n: int = 10,
-    seed: int = None,
-    bounds: dict = None,
+    seed: int | None = None,
+    bounds: dict | None = None,
     save: bool = True,
-    filename: str = None,
+    filename: str | None = None,
+    max_locations: int = DEFAULT_MAX_LOCATIONS,
 ) -> dict:
     """
     Generate a complete routing dataset including coordinates and distance matrix.
@@ -68,8 +71,8 @@ def generate_dataset(
     """
     if n < 2:
         raise ValueError("Need at least 2 locations to generate a routing dataset.")
-    if n > 25:
-        raise ValueError("Maximum supported locations is 25 (API and model constraints).")
+    if n > max_locations:
+        raise ValueError(f"Maximum supported locations is {max_locations} (API and model constraints).")
 
     if bounds is None:
         bounds = DEFAULT_BOUNDS
