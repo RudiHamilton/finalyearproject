@@ -27,6 +27,7 @@ htmlcov/
 Thumbs.db
 
 # Generated datasets / outputs
+data/generated_barcodes/
 data/datasets/
 outputs/
 logs/
