@@ -1,3 +1,5 @@
+const API_BASE_URL = "http://127.0.0.1:5000/api";
+
 const loginSection = document.getElementById("login-section");
 const dashboardSection = document.getElementById("dashboard-section");
 
@@ -14,64 +16,14 @@ const selectedRouteBody = document.getElementById("selected-route-body");
 const routePreview = document.getElementById("route-preview");
 const statusMessage = document.getElementById("status-message");
 
-const fakeDeliveries = [
-    {
-        id: 1,
-        barcode: "DEL-100001",
-        item_description: "Small parcel",
-        customer_name: "Jordan Smith",
-        city: "Enniskillen",
-        postcode: "BT74 5AB",
-        latitude: 54.3438,
-        longitude: -7.6315
-    },
-    {
-        id: 2,
-        barcode: "DEL-100002",
-        item_description: "Medium box",
-        customer_name: "Megan Brown",
-        city: "Lisnaskea",
-        postcode: "BT92 1CD",
-        latitude: 54.2500,
-        longitude: -7.4428
-    },
-    {
-        id: 3,
-        barcode: "DEL-100003",
-        item_description: "Document envelope",
-        customer_name: "Ryan Campbell",
-        city: "Irvinestown",
-        postcode: "BT94 3EF",
-        latitude: 54.4706,
-        longitude: -7.6336
-    },
-    {
-        id: 4,
-        barcode: "DEL-100004",
-        item_description: "Fragile parcel",
-        customer_name: "Aoife Kelly",
-        city: "Belleek",
-        postcode: "BT93 2GH",
-        latitude: 54.4793,
-        longitude: -8.0895
-    }
-];
-
 const selectedDeliveries = [];
 
-loginButton.addEventListener("click", () => {
-    const employeeNumber = employeeInput.value.trim();
+loginButton.addEventListener("click", loginEmployee);
 
-    if (!employeeNumber) {
-        showStatus("Enter an employee number first.", "error");
-        return;
+employeeInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        loginEmployee();
     }
-
-    loginSection.classList.add("hidden");
-    dashboardSection.classList.remove("hidden");
-
-    employeeDisplay.textContent = `Active employee: ${employeeNumber}`;
-    barcodeInput.focus();
 });
 
 logoutButton.addEventListener("click", () => {
@@ -86,6 +38,7 @@ logoutButton.addEventListener("click", () => {
     loginSection.classList.remove("hidden");
 
     statusMessage.textContent = "";
+    employeeInput.focus();
 });
 
 scanButton.addEventListener("click", addDeliveryByBarcode);
@@ -110,18 +63,66 @@ optimiseButton.addEventListener("click", () => {
     showStatus("Route preview generated.", "success");
 });
 
-function addDeliveryByBarcode() {
-    const barcode = barcodeInput.value.trim().toUpperCase();
+async function loginEmployee() {
+    console.log("REAL DATABASE LOGIN FUNCTION RUNNING");
+    const employeeNumber = employeeInput.value.trim();
+
+    if (!employeeNumber) {
+        showStatus("Enter an employee number first.", "error");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `${API_BASE_URL}/employees/${encodeURIComponent(employeeNumber)}`
+        );
+
+        if (!response.ok) {
+            showStatus("Employee number not recognised.", "error");
+            return;
+        }
+
+        const employee = await response.json();
+
+        loginSection.classList.add("hidden");
+        dashboardSection.classList.remove("hidden");
+
+        employeeDisplay.textContent = `Active employee: ${employee.full_name} (${employee.employee_number})`;
+
+        statusMessage.textContent = "";
+        barcodeInput.focus();
+
+    } catch (error) {
+        console.error(error);
+        showStatus("Could not connect to employee API.", "error");
+    }
+}
+
+async function addDeliveryByBarcode() {
+    const barcode = barcodeInput.value.trim();
 
     if (!barcode) {
         showStatus("Scan or enter a barcode.", "error");
         return;
     }
 
-    const delivery = fakeDeliveries.find(item => item.barcode === barcode);
+    let delivery;
 
-    if (!delivery) {
-        showStatus("No delivery found for that barcode.", "error");
+    try {
+        const response = await fetch(
+            `${API_BASE_URL}/deliveries/barcode/${encodeURIComponent(barcode)}`
+        );
+
+        if (!response.ok) {
+            showStatus("No delivery found for that barcode.", "error");
+            return;
+        }
+
+        delivery = await response.json();
+
+    } catch (error) {
+        console.error(error);
+        showStatus("Could not connect to delivery API.", "error");
         return;
     }
 

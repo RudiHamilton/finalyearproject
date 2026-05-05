@@ -83,6 +83,8 @@ def random_near(base_lat, base_lng, spread=0.018):
         round(base_lng + random.uniform(-spread, spread), 6),
     )
 
+def generate_numeric_barcode():
+    return str(random.randint(1000000000000, 9999999999999))
 
 def reset_tables(cursor):
     """
@@ -91,6 +93,7 @@ def reset_tables(cursor):
     """
     cursor.execute("DELETE FROM deliveries;")
     cursor.execute("DELETE FROM customers;")
+    cursor.execute("DELETE FROM employees;")
 
 
 def seed_customers(cursor, count=40):
@@ -154,7 +157,7 @@ def seed_deliveries(cursor, customer_ids, count=100):
         barcode = None
 
         while barcode is None or barcode in used_barcodes:
-            barcode = f"DEL-{random.randint(100000, 999999)}"
+            barcode = generate_numeric_barcode()
 
         used_barcodes.add(barcode)
 
@@ -179,11 +182,41 @@ def seed_deliveries(cursor, customer_ids, count=100):
             ),
         )
 
+def seed_employees(cursor):
+    """
+    Creates demo employees for lightweight employee/till number access.
+    """
+    employees = [
+        ("101", "Rudi Hamilton"),
+        ("102", "Sarah McKenna"),
+        ("103", "James Donnelly"),
+        ("104", "Emma Gallagher"),
+        ("105", "Conor Magee"),
+    ]
+
+    for employee_number, full_name in employees:
+        cursor.execute(
+            """
+            INSERT INTO employees
+            (
+                employee_number,
+                full_name
+            )
+            VALUES (%s, %s)
+            ON CONFLICT (employee_number) DO NOTHING;
+            """,
+            (
+                employee_number,
+                full_name,
+            ),
+        )
 
 def main():
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as cursor:
             reset_tables(cursor)
+
+            seed_employees(cursor)
 
             customer_ids = seed_customers(cursor, count=40)
             seed_deliveries(cursor, customer_ids, count=100)
@@ -191,6 +224,7 @@ def main():
             conn.commit()
 
     print("Database seeded successfully.")
+    print("Created demo employees.")
     print("Created 40 customers.")
     print("Created 100 deliveries.")
 

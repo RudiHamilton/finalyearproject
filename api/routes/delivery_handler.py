@@ -61,3 +61,36 @@ def get_pending_deliveries():
 
     finally:
         conn.close()
+
+@delivery_bp.route("/deliveries/barcode/<barcode>", methods=["GET"])
+def get_delivery_by_barcode(barcode):
+    conn = get_db_connection()
+
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("""
+                SELECT
+                    d.id,
+                    d.barcode,
+                    d.item_description,
+                    d.delivery_status,
+                    d.delivery_notes,
+                    c.first_name || ' ' || c.last_name AS customer_name,
+                    c.city,
+                    c.postcode,
+                    c.latitude,
+                    c.longitude
+                FROM deliveries d
+                JOIN customers c ON d.customer_id = c.id
+                WHERE UPPER(d.barcode) = UPPER(%s);
+            """, (barcode,))
+
+            row = cursor.fetchone()
+
+        if row is None:
+            return jsonify({"error": "Delivery not found"}), 404
+
+        return jsonify(row)
+
+    finally:
+        conn.close()
