@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from api.routes.delivery_handler import delivery_bp
 from api.routes.employee_handler import employee_bp
+from api.routes.route_handler import route_bp
 
 
 def create_app():
@@ -9,7 +10,8 @@ def create_app():
     CORS(app)
     app.register_blueprint(delivery_bp, url_prefix="/api")
     app.register_blueprint(employee_bp, url_prefix="/api")
-
+    app.register_blueprint(route_bp, url_prefix="/api")
+    
     @app.route("/")
     def index():
         return jsonify({

@@ -49,19 +49,54 @@ barcodeInput.addEventListener("keydown", (event) => {
     }
 });
 
-optimiseButton.addEventListener("click", () => {
+optimiseButton.addEventListener("click", optimiseSelectedRoute);
+
+async function optimiseSelectedRoute() {
     if (selectedDeliveries.length === 0) {
         showStatus("No deliveries selected to optimise.", "error");
         return;
     }
 
-    const optimisedRoute = [...selectedDeliveries].sort((a, b) =>
-        a.city.localeCompare(b.city)
+    showStatus("Optimising route...", "success");
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/deliveries/optimise`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                deliveries: selectedDeliveries,
+                method: "auto",
+            }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            showStatus(result.error || "Route optimisation failed.", "error");
+            console.error(result);
+            return;
+        }
+
+        renderRoutePreview(result.route);
+
+    let comparisonText = "";
+
+    if (result.comparison && Object.keys(result.comparison).length > 0) {
+        comparisonText = ` NN+2opt: ${result.comparison.nn_two_opt_distance_km} km. ML+2opt: ${result.comparison.ml_two_opt_distance_km} km.`;
+    }
+
+    showStatus(
+        `Selected ${result.selected_method}. Distance: ${result.total_distance_km} km. Runtime: ${result.runtime_ms} ms.${comparisonText}`,
+        "success"
     );
 
-    renderRoutePreview(optimisedRoute);
-    showStatus("Route preview generated.", "success");
-});
+    } catch (error) {
+        console.error(error);
+        showStatus("Could not connect to route optimisation API.", "error");
+    }
+}
 
 async function loginEmployee() {
     console.log("REAL DATABASE LOGIN FUNCTION RUNNING");
@@ -172,14 +207,22 @@ function renderSelectedDeliveries() {
 function renderRoutePreview(route) {
     routePreview.innerHTML = "";
 
-    if (route.length === 0) {
+    if (!route || route.length === 0) {
         routePreview.innerHTML = "<li>No route generated yet.</li>";
         return;
     }
 
-    route.forEach((delivery, index) => {
+    route.forEach((delivery) => {
         const item = document.createElement("li");
-        item.textContent = `${index + 1}. ${delivery.customer_name} - ${delivery.city} (${delivery.barcode})`;
+
+        const position = delivery.route_position || "";
+        const customer = delivery.customer_name || "Unknown customer";
+        const city = delivery.city || "Unknown town";
+        const postcode = delivery.postcode || "";
+        const barcode = delivery.barcode || "";
+
+        item.textContent = `${position}. ${customer} - ${city} ${postcode} (${barcode})`;
+
         routePreview.appendChild(item);
     });
 }
