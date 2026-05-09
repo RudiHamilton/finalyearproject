@@ -194,7 +194,7 @@ def seed_employees(cursor):
     """)
     employees = [
         ("101", "Rudi Hamilton"),
-        ("102", "Sarah McKenna"),
+        ("102", "Brendan Quinn"),
         ("103", "James Donnelly"),
         ("104", "Emma Gallagher"),
         ("105", "Conor Magee"),
