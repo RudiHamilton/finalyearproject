@@ -1,0 +1,589 @@
+{
+  "num_trials": 20,
+  "num_locations": 25,
+  "start_seed": 1000,
+  "averages": {
+    "Random route": {
+      "average_distance_km": 2004.681,
+      "vs_nn_two_opt_percent": 206.73
+    },
+    "Nearest neighbour": {
+      "average_distance_km": 733.4224,
+      "vs_nn_two_opt_percent": 12.22
+    },
+    "Nearest neighbour + 2-opt": {
+      "average_distance_km": 653.5603,
+      "vs_nn_two_opt_percent": 0.0
+    },
+    "ML (XGBoost)": {
+      "average_distance_km": 674.2769,
+      "vs_nn_two_opt_percent": 3.17
+    },
+    "ML (XGBoost) + 2-opt": {
+      "average_distance_km": 641.8579,
+      "vs_nn_two_opt_percent": -1.79
+    }
+  },
+  "trials": [
+    {
+      "seed": 1000,
+      "Random route": {
+        "distance_km": 2144.0303,
+        "valid": true,
+        "runtime_seconds": 9e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 799.9032,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 700.7414,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 721.3115,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 697.1003,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1001,
+      "Random route": {
+        "distance_km": 2142.8536,
+        "valid": true,
+        "runtime_seconds": 1.6e-05
+      },
+      "Nearest neighbour": {
+        "distance_km": 799.5504,
+        "valid": true,
+        "runtime_seconds": 6e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 697.2047,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 704.4803,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 697.3197,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1002,
+      "Random route": {
+        "distance_km": 1916.8811,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 726.5333,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 685.6223,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 657.8922,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 646.4358,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1003,
+      "Random route": {
+        "distance_km": 2066.7516,
+        "valid": true,
+        "runtime_seconds": 9e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 673.1456,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 629.1652,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 662.3761,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 631.7053,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      }
+    },
+    {
+      "seed": 1004,
+      "Random route": {
+        "distance_km": 1977.5496,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 723.5504,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 621.9677,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 670.9198,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 630.4995,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      }
+    },
+    {
+      "seed": 1005,
+      "Random route": {
+        "distance_km": 1923.5582,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 861.6594,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 682.4559,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 695.1638,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 679.8578,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1006,
+      "Random route": {
+        "distance_km": 2317.2917,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 824.9479,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 762.4087,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 852.6413,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 762.8634,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1007,
+      "Random route": {
+        "distance_km": 2366.3486,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 740.3063,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 717.8683,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 715.1103,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 678.7371,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      }
+    },
+    {
+      "seed": 1008,
+      "Random route": {
+        "distance_km": 1854.3377,
+        "valid": true,
+        "runtime_seconds": 2.3e-05
+      },
+      "Nearest neighbour": {
+        "distance_km": 703.5733,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 638.6559,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 648.2403,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 629.6244,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1009,
+      "Random route": {
+        "distance_km": 2054.0975,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 745.6133,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 682.5889,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 656.4122,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 635.5065,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1010,
+      "Random route": {
+        "distance_km": 2291.1625,
+        "valid": true,
+        "runtime_seconds": 1e-05
+      },
+      "Nearest neighbour": {
+        "distance_km": 759.1755,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 691.7112,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 722.8127,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 683.0274,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1011,
+      "Random route": {
+        "distance_km": 2066.5251,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 607.8088,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 555.4711,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 520.1636,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 520.1636,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1012,
+      "Random route": {
+        "distance_km": 2004.6157,
+        "valid": true,
+        "runtime_seconds": 8e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 697.8907,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 578.4386,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 566.9962,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 547.9651,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1013,
+      "Random route": {
+        "distance_km": 1864.6369,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 583.684,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 547.2548,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 488.759,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 488.759,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      }
+    },
+    {
+      "seed": 1014,
+      "Random route": {
+        "distance_km": 2102.3445,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 678.0046,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 651.6715,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 694.0109,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 651.6715,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1015,
+      "Random route": {
+        "distance_km": 1852.1309,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 813.885,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 725.7641,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 776.0311,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 736.9331,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1016,
+      "Random route": {
+        "distance_km": 1517.8527,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 728.1492,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 532.0556,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 533.3501,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 532.0556,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1017,
+      "Random route": {
+        "distance_km": 1897.2527,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 804.9789,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 659.7741,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 814.634,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 659.7741,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1018,
+      "Random route": {
+        "distance_km": 1934.8013,
+        "valid": true,
+        "runtime_seconds": 1.1e-05
+      },
+      "Nearest neighbour": {
+        "distance_km": 701.8793,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 674.6082,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 695.0517,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 691.3819,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    },
+    {
+      "seed": 1019,
+      "Random route": {
+        "distance_km": 1798.5982,
+        "valid": true,
+        "runtime_seconds": 7e-06
+      },
+      "Nearest neighbour": {
+        "distance_km": 694.2087,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "Nearest neighbour + 2-opt": {
+        "distance_km": 635.7769,
+        "valid": true,
+        "runtime_seconds": 4e-06
+      },
+      "ML (XGBoost)": {
+        "distance_km": 689.1819,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      },
+      "ML (XGBoost) + 2-opt": {
+        "distance_km": 635.7769,
+        "valid": true,
+        "runtime_seconds": 3e-06
+      }
+    }
+  ]
+}

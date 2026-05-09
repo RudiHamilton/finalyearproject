@@ -1,0 +1,42 @@
+[
+  {
+    "name": "dist_to_candidate",
+    "importance": 0.554719
+  },
+  {
+    "name": "current_lng",
+    "importance": 0.187261
+  },
+  {
+    "name": "current_lat",
+    "importance": 0.100709
+  },
+  {
+    "name": "max_dist",
+    "importance": 0.039957
+  },
+  {
+    "name": "candidate_lat",
+    "importance": 0.019746
+  },
+  {
+    "name": "candidate_lng",
+    "importance": 0.017824
+  },
+  {
+    "name": "avg_dist_from_candidate",
+    "importance": 0.016424
+  },
+  {
+    "name": "stops_remaining",
+    "importance": 0.016017
+  },
+  {
+    "name": "min_dist",
+    "importance": 0.014214
+  },
+  {
+    "name": "relative_distance",
+    "importance": 0.010631
+  }
+]

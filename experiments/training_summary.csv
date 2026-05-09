@@ -1,0 +1,8 @@
+Metric,Value
+training_rows,340880
+positive_labels,32706
+negative_labels,308174
+accuracy,0.8999
+class_1_precision,0.488
+class_1_recall,0.8752
+class_1_f1,0.6266

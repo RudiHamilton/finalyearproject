@@ -144,6 +144,49 @@ def main():
             f"Teacher NN+2opt: {item['teacher_distance']:.2f} km | "
             f"Route: {item['teacher_route']}"
         )
+        
+        feature_names = [
+        "dist_to_candidate",
+        "relative_distance",
+        "avg_dist_from_candidate",
+        "min_dist",
+        "max_dist",
+        "stops_remaining",
+        "current_lat",
+        "current_lng",
+        "candidate_lat",
+        "candidate_lng",
+    ]
+
+    report = classification_report(y_test, predictions, output_dict=True)
+
+    training_summary = {
+        "training_rows": len(features),
+        "positive_labels": sum(labels),
+        "negative_labels": len(labels) - sum(labels),
+        "accuracy": round(accuracy, 4),
+        "class_1_precision": round(report["1"]["precision"], 4),
+        "class_1_recall": round(report["1"]["recall"], 4),
+        "class_1_f1": round(report["1"]["f1-score"], 4),
+    }
+
+    feature_importance = sorted(
+        [
+            {"name": name, "importance": round(float(imp), 6)}
+            for name, imp in zip(feature_names, model.feature_importances_)
+        ],
+        key=lambda x: -x["importance"]
+    )
+
+    os.makedirs("experiments", exist_ok=True)
+
+    with open("experiments/training_summary.json", "w") as f:
+        json.dump(training_summary, f, indent=2)
+
+    with open("experiments/feature_importance.json", "w") as f:
+        json.dump(feature_importance, f, indent=2)
+
+    print("Saved training_summary.json and feature_importance.json")
 
 
 if __name__ == "__main__":

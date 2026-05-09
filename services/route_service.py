@@ -43,7 +43,8 @@ def order_deliveries_by_route(deliveries, route):
         delivery["route_position"] = route_position
         ordered_deliveries.append(delivery)
 
-    return ordered_deliveries
+    return 
+
 
 def build_nn_two_opt_route(distance_matrix, start_index=0):
     """
@@ -61,6 +62,7 @@ def build_nn_two_opt_route(distance_matrix, start_index=0):
     )
 
     return improved_route
+
 
 def optimise_deliveries(deliveries, method="auto"):
     """

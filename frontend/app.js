@@ -11,12 +11,14 @@ const employeeDisplay = document.getElementById("employee-display");
 const barcodeInput = document.getElementById("barcode-input");
 const scanButton = document.getElementById("scan-button");
 const optimiseButton = document.getElementById("optimise-button");
+const googleMapsButton = document.getElementById("google-maps-button");
 
 const selectedRouteBody = document.getElementById("selected-route-body");
 const routePreview = document.getElementById("route-preview");
 const statusMessage = document.getElementById("status-message");
 
 const selectedDeliveries = [];
+let optimisedRoute = [];
 
 loginButton.addEventListener("click", loginEmployee);
 
@@ -51,6 +53,19 @@ barcodeInput.addEventListener("keydown", (event) => {
 
 optimiseButton.addEventListener("click", optimiseSelectedRoute);
 
+if (googleMapsButton) {
+    googleMapsButton.addEventListener("click", () => {
+        if (!optimisedRoute || optimisedRoute.length === 0) {
+            showStatus("Optimise a route before opening Google Maps.", "error");
+            return;
+        }
+
+        openRouteInGoogleMaps(optimisedRoute);
+    });
+} else {
+    console.error("Google Maps button not found in HTML.");
+}
+
 async function optimiseSelectedRoute() {
     if (selectedDeliveries.length === 0) {
         showStatus("No deliveries selected to optimise.", "error");
@@ -79,18 +94,25 @@ async function optimiseSelectedRoute() {
             return;
         }
 
-        renderRoutePreview(result.route);
+        optimisedRoute = result.route;
+        renderRoutePreview(optimisedRoute);
 
-    let comparisonText = "";
+        if (googleMapsButton) {
+            googleMapsButton.classList.remove("hidden");
+        } else {
+            console.error("Google Maps button not found");
+        }
 
-    if (result.comparison && Object.keys(result.comparison).length > 0) {
-        comparisonText = ` NN+2opt: ${result.comparison.nn_two_opt_distance_km} km. ML+2opt: ${result.comparison.ml_two_opt_distance_km} km.`;
-    }
+        let comparisonText = "";
 
-    showStatus(
-        `Selected ${result.selected_method}. Distance: ${result.total_distance_km} km. Runtime: ${result.runtime_ms} ms.${comparisonText}`,
-        "success"
-    );
+        if (result.comparison && Object.keys(result.comparison).length > 0) {
+            comparisonText = ` NN+2opt: ${result.comparison.nn_two_opt_distance_km} km. ML+2opt: ${result.comparison.ml_two_opt_distance_km} km.`;
+        }
+
+        showStatus(
+            `Selected ${result.selected_method}. Distance: ${result.total_distance_km} km. Runtime: ${result.runtime_ms} ms.${comparisonText}`,
+            "success"
+        );
 
     } catch (error) {
         console.error(error);
@@ -221,10 +243,27 @@ function renderRoutePreview(route) {
         const postcode = delivery.postcode || "";
         const barcode = delivery.barcode || "";
 
-        item.textContent = `${position}. ${customer} - ${city} ${postcode} (${barcode})`;
+       item.textContent = `${customer} - ${city} ${postcode} (${barcode})`;
 
         routePreview.appendChild(item);
     });
+}
+
+function openRouteInGoogleMaps(route) {
+    const locations = route.map(stop => {
+        if (stop.lat && stop.lng) {
+            return `${stop.lat},${stop.lng}`;
+        }
+
+        const locationText = `${stop.city || ""} ${stop.postcode || ""} Northern Ireland`;
+        return encodeURIComponent(locationText.trim());
+    });
+
+    const url = `https://www.google.com/maps/dir/${locations.join("/")}`;
+
+    console.log("Opening Google Maps URL:", url);
+
+    window.open(url, "_blank");
 }
 
 function showStatus(message, type) {

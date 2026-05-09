@@ -1,0 +1,6 @@
+Algorithm,Average Distance (km),vs NN+2opt (%)
+Random route,2004.681,206.73
+Nearest neighbour,733.4224,12.22
+Nearest neighbour + 2-opt,653.5603,0.0
+ML (XGBoost),674.2769,3.17
+ML (XGBoost) + 2-opt,641.8579,-1.79

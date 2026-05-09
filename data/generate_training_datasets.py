@@ -6,7 +6,6 @@ These JSON files are temporary and can be deleted after the model has been train
 """
 
 import argparse
-from html import parser
 import os
 import random
 
@@ -27,6 +26,13 @@ def wipe_existing_datasets():
 
 
 def main():
+    """
+    Generates a configurable batch of synthetic route datasets for model training.
+
+    The generated JSON files are temporary training data and can be deleted after
+    the model is trained because they can be recreated using the same generator
+    and seed values.
+    """
     parser = argparse.ArgumentParser(
         description="Generate synthetic routing datasets for ML training."
     )
@@ -57,15 +63,17 @@ def main():
         type=int,
         default=0,
         help="Starting seed value for reproducibility."
-    )
+    )   
 
     parser.add_argument(
         "--wipe",
         action="store_true",
         help="Delete existing generated dataset JSON files first."
     )
-
-    args = parser.parse_args()
+    
+    if args.start_seed + args.count > 1000:
+        print("[WARNING] Seed range overlaps with evaluation seeds (1000+)")
+        args = parser.parse_args()
 
     if args.wipe:
         print("[training-data] Wiping existing dataset JSON files...")
@@ -81,7 +89,7 @@ def main():
     for index in range(args.count):
         seed = args.start_seed + index
         n = random.randint(args.min_n, args.max_n)
-        generate_dataset(
+        generate_dataset(       #UHHHHHHH THIS IS THE FUNCTION CALL TO GENERATE THE DATASET ITS  IN THE GENERATOR.PY FILE. 
             n=n,
             seed=seed,
             save=True
