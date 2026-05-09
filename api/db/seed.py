@@ -183,9 +183,15 @@ def seed_deliveries(cursor, customer_ids, count=100):
         )
 
 def seed_employees(cursor):
+    
     """
     Creates demo employees for lightweight employee/till number access.
     """
+    cursor.execute("""
+        INSERT INTO employees (employee_number, first_name, last_name, role)
+        VALUES ('100', 'Admin', 'User', 'admin')
+        ON CONFLICT (employee_number) DO NOTHING;
+    """)
     employees = [
         ("101", "Rudi Hamilton"),
         ("102", "Sarah McKenna"),
