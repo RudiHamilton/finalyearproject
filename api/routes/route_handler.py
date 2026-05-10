@@ -14,7 +14,7 @@ def optimise_route():
         return jsonify({"error": "Missing JSON request body."}), 400
 
     deliveries = data.get("deliveries", [])
-    method = data.get("method", "ml_two_opt") #'needs fixed
+    method = data.get("method", "auto") #'needs fixed
 
     if not deliveries:
         return jsonify({"error": "No deliveries provided."}), 400

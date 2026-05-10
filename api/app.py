@@ -6,7 +6,7 @@ from api.routes.route_handler import route_bp
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="../frontend", static_url_path="")
     CORS(app)
     app.register_blueprint(delivery_bp, url_prefix="/api")
     app.register_blueprint(employee_bp, url_prefix="/api")
@@ -14,17 +14,11 @@ def create_app():
     
     @app.route("/")
     def index():
-        return jsonify({
-            "message": "FYP Route Planner API running",
-            "endpoints": [
-                "/api/deliveries",
-                "/api/deliveries/pending"
-            ]
-        })
+        return app.send_static_file("index.html")
 
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True)
+    app.run(debug=True, port=8000)

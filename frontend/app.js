@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:5000/api";
+const API_BASE_URL = "/api";
 
 const loginSection = document.getElementById("login-section");
 const dashboardSection = document.getElementById("dashboard-section");
@@ -87,6 +87,7 @@ async function optimiseSelectedRoute() {
         });
 
         const result = await response.json();
+        console.log("Full API result:", result); // add here
 
         if (!response.ok) {
             showStatus(result.error || "Route optimisation failed.", "error");
@@ -227,6 +228,8 @@ function renderSelectedDeliveries() {
 }
 
 function renderRoutePreview(route) {
+    console.log("renderRoutePreview called", route);
+    console.log("routePreview element", routePreview);
     routePreview.innerHTML = "";
 
     if (!route || route.length === 0) {
@@ -251,8 +254,8 @@ function renderRoutePreview(route) {
 
 function openRouteInGoogleMaps(route) {
     const locations = route.map(stop => {
-        if (stop.lat && stop.lng) {
-            return `${stop.lat},${stop.lng}`;
+        if (stop.latitude && stop.longitude) {
+            return `${stop.latitude},${stop.longitude}`;
         }
 
         const locationText = `${stop.city || ""} ${stop.postcode || ""} Northern Ireland`;
